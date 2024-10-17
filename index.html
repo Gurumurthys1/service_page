@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagonal Split Page with Cards</title>
+    <!-- Include Google Fonts for Agdasima -->
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Include Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Include Anime.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <style>
+        /* Diagonal split sections */
+        .purple-section {
+            clip-path: polygon(0 0, 91% 0, 9% 100%, 0% 100%);
+        }
+
+        .white-section {
+            clip-path: polygon(100% 0, 91% 0, 9% 100%, 100% 100%);
+        }
+
+        /* Box shadow and hover effect */
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        /* Smooth hover effect for cards */
+        .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="m-0 p-0 h-screen">
+
+    <!-- Main Div with ID 'assignment' -->
+    <div class="relative w-full h-full overflow-hidden" id="assignment">
+        <!-- Purple and White Sections -->
+        <div class="absolute top-0 left-0 w-full h-full bg-indigo-900 purple-section"></div>
+        <div class="absolute top-0 right-0 w-full h-full bg-white white-section"></div>
+
+        <!-- Content Area -->
+        <div class="relative z-10 p-10">
+            <!-- Title -->
+            <h1 class="font-agdasima text-left text-6xl font-bold mb-20 text-white ml-10">OUR SERVICES</h1>
+
+            <!-- Cards Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mx-12 my-6 pt-10">
+
+                <!-- Card 1 -->
+                <div class="card relative bg-white rounded-sm shadow-lg custom-shadow p-8 max-w-xs h-96">
+                    <div class="absolute inset-x-0 -top-16 flex justify-center">
+                        <!-- Placeholder Icon -->
+                        <img src="./icon_1.png" alt="Service Icon" class="w-32 h-32 rounded-full border-4 border-indigo-900">
+                    </div>
+                    <div class="pt-20 text-center">
+                        <h2 class="text-2xl font-bold text-gray-800">Emergency Plumbing Services</h2>
+                        <p class="text-gray-900 mt-2 mb-4">Our plumbers are ready to go 24/7 for emergencies - including nights, weekends, and holidays.</p>
+                        <a href="#" class="mt-4 text-purple-900 font-bold hover:underline">EXPLORE THIS SERVICE ></a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card relative bg-white rounded-sm shadow-lg custom-shadow p-8 max-w-xs h-96">
+                    <div class="absolute inset-x-0 -top-16 flex justify-center">
+                        <img src="./icon_2-removebg-preview.png" alt="Service Icon" class="bg-white w-32 h-32 rounded-full border-4 border-indigo-900">
+                    </div>
+                    <div class="pt-20 text-center">
+                        <h2 class="text-2xl font-bold text-gray-800">Plumbing and Drains</h2>
+                        <p class="text-gray-900 mt-2 mb-4">As the largest plumbing and drain service company, we make thousands of repairs every day.</p>
+                        <a href="#" class="mt-4 text-purple-900 font-bold hover:underline">EXPLORE THIS SERVICE ></a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card relative bg-white rounded-sm shadow-lg custom-shadow p-8 max-w-xs h-96">
+                    <div class="absolute inset-x-0 -top-16 flex justify-center">
+                        <img src="./icon_3-removebg-preview.png" alt="Service Icon" class="bg-white w-32 h-32 rounded-full border-4 border-indigo-900">
+                    </div>
+                    <div class="pt-20 text-center">
+                        <h2 class="text-2xl font-bold text-gray-800">Water Damage</h2>
+                        <p class="text-gray-900 mt-2 mb-4">Our teams are equipped with state-of-the-art water extraction and cleanup equipment.</p>
+                        <a href="#" class="mt-4 text-purple-900 font-bold hover:underline">EXPLORE THIS SERVICE ></a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card relative bg-white rounded-sm shadow-lg custom-shadow p-8 max-w-xs h-96">
+                    <div class="absolute inset-x-0 -top-16 flex justify-center">
+                        <img src="./icon_4.png" alt="Service Icon" class="bg-white w-32 h-32 rounded-full border-4 border-indigo-900">
+                    </div>
+                    <div class="pt-20 text-center">
+                        <h2 class="text-2xl font-bold text-gray-800">Water Heaters</h2>
+                        <p class="text-gray-900 mt-2  mb-4">Trust Roto-Rooter for repair and replacement of gas, electric, and tankless water heaters.</p>
+                        <a href="#" class="mt-4 text-purple-900 font-bold hover:underline">EXPLORE THIS SERVICE ></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for hover rotation using Anime.js -->
+    <script>
+      // Apply rotation using Anime.js
+        const cards = document.querySelectorAll('.card');
+
+
+        let isRotating = false;
+
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                if (!isRotating) {
+                    isRotating = true;
+                    anime({
+                        targets: card,
+                        rotateY: '+=360deg', 
+                        duration: 1000, 
+                        easing: 'easeInOutSine',
+                        complete: () => {
+                            isRotating = false; 
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
